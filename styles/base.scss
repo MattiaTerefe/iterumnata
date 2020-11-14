@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Roboto";
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fBBc4.woff2);
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto";
+  background-color: $bg-color-1;
+  color: $text-color-1;
+  font-size: 14;
+}
+
+ul {
+  list-style: none;
+}
+
+a,
+h1,
+h2,
+h3 {
+  color: $text-color-2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $select-color-1;
+}
