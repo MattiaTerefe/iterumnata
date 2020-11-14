@@ -18,7 +18,7 @@ export default function Home() {
     const offset = Number(postpage) * 10 - 10;
     const endpoint =
       "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts/?offset=" +
-      offset.toString();
+      offset;
     if (!loaded) {
       fetch(endpoint)
         .then((response) => response.json())
@@ -45,7 +45,8 @@ export default function Home() {
         </Header>
         <Container>
           <Main posts={postList} />
-          <Side />*{postpage}
+
+          <Side />
         </Container>
         <Footer />
       </>
