@@ -13,7 +13,7 @@ export const Main = (props) => {
   return (
     <main className="l-main">
       {posts}
-      <Link href="/1">
+      <Link href="/page/1">
         <a>hey</a>
       </Link>
     </main>

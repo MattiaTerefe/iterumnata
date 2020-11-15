@@ -12,8 +12,8 @@ export default function Postpage(props) {
   const [loaded, setLoaded] = useState(false);
   const [postList, setPostList] = useState([]);
   const router = useRouter();
-  const { test } = router.query;
-  const offset = Number(test) * 10 - 10;
+  const { postpage } = router.query;
+  const offset = Number(postpage) * 10 - 10;
   const endpoint =
     "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts/?offset=" +
     offset.toString();
@@ -41,7 +41,7 @@ export default function Postpage(props) {
           <Logo />
         </Header>
         <Container>
-          {/*} <Main posts={postList} />{*/}
+          <Main posts={postList} />
 
           <Side />
         </Container>

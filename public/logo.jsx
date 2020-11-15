@@ -1,1 +1,3 @@
-export const Logo = (props) => <img src="./assets/logo.svg" className="logo" />;
+export const Logo = (props) => (
+  <img src="../assets/logo.svg" className="logo" />
+);
