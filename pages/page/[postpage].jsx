@@ -11,14 +11,16 @@ import { useState, useEffect } from "react";
 export default function Postpage(props) {
   const [loaded, setLoaded] = useState(false);
   const [postList, setPostList] = useState([]);
+  const [url, setUrl] = useState("");
   const router = useRouter();
-  const { postpage } = router.query;
-  const offset = Number(postpage) * 10 - 10;
-  const endpoint =
-    "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts/?offset=" +
-    offset.toString();
-  console.log(endpoint);
+  const { query } = router.query;
+  useEffect(() => setUrl(window.location.href.slice(27)));
   if (!loaded) {
+    const offset = Number(url) * 10 - 10;
+    console.log(offset);
+    const endpoint =
+      "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts/?offset=" +
+      offset.toString();
     fetch(endpoint)
       .then((response) => response.json())
       .then((data) => {
@@ -26,6 +28,7 @@ export default function Postpage(props) {
         setLoaded(true);
       });
   }
+
   if (loaded) {
     return (
       <>
@@ -42,7 +45,6 @@ export default function Postpage(props) {
         </Header>
         <Container>
           <Main posts={postList} />
-
           <Side />
         </Container>
         <Footer />
