@@ -7,8 +7,9 @@ import { Side } from "../public/side.jsx";
 import { Container } from "../public/container.jsx";
 import { useRouter } from "next/router";
 import { Logo } from "../public/logo.jsx";
+import Link from "next/link";
 
-export default function Home() {
+export default function Home({ pages }) {
   const router = useRouter();
   const { postpage } = router.query;
   const [loaded, setLoaded] = useState(false);
@@ -56,54 +57,3 @@ export default function Home() {
     return <h1>PLEASE WAIT</h1>;
   }
 }
-/*
-export async function getStaticProps() {
-  let indexShift = parseInt(params.postpage) * 10 - 10;
-  const response = await fetch(
-    "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts?offset=" +
-      indexShift.toString()
-  );
-  const posts = await response.json();
-
-
-  const router = useRouter();
-  const { postpage } = router.query;
-  const response = await fetch(
-    "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts?offset=" +
-      postpage.toString()
-  );
-  const posts = await response.json();
-
-
-  return {
-    props: {
-      posts,
-    },
-  };
-}
- 
-
-export async function getStaticPaths() {
-  const response = await fetch(
-    "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts"
-  );
-  const tot = response.headers.get("x-wp-total");
-  const pagesNumber = tot / 10;
-
-  let links = [];
-  for (let i = 0; i < pagesNumber; i++) {
-    links.concat(i + 1);
-  }
-
-  return {
-    paths: links.map((el) => {
-      return {
-        params: {
-          postpage: el.toString(),
-        },
-      };
-    }),
-    fallback: false,
-  };
-}
- */
