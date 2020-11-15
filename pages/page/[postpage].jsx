@@ -15,8 +15,9 @@ export default function Postpage(props) {
   const router = useRouter();
   const { query } = router.query;
   useEffect(() => setUrl(window.location.href.slice(27)));
+  console.log("url:" + url);
   if (!loaded) {
-    const offset = Number(url) * 10 - 10;
+    const offset = Number(url) * 10;
     console.log(offset);
     const endpoint =
       "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts/?offset=" +
@@ -24,6 +25,7 @@ export default function Postpage(props) {
     fetch(endpoint)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setPostList(data);
         setLoaded(true);
       });
