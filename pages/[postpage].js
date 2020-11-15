@@ -9,16 +9,17 @@ import { useRouter } from "next/router";
 import { Logo } from "../public/logo.jsx";
 
 export default function Home() {
-  const [loaded, setLoaded] = useState(false);
-  const [postList, setPostList] = useState([]);
   const router = useRouter();
   const { postpage } = router.query;
+  const [loaded, setLoaded] = useState(false);
+  const [postList, setPostList] = useState([]);
 
   useEffect(() => {
     const offset = Number(postpage) * 10 - 10;
     const endpoint =
       "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts/?offset=" +
-      offset;
+      offset.toString();
+    console.log(endpoint);
     if (!loaded) {
       fetch(endpoint)
         .then((response) => response.json())
