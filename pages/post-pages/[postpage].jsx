@@ -5,7 +5,6 @@ import { Main } from "../../public/main.jsx";
 import { Side } from "../../public/side.jsx";
 import { Container } from "../../public/container.jsx";
 import { Logo } from "../../public/logo.jsx";
-import { useState, useEffect } from "react";
 
 export default function Postpage({ postList }) {
   return (
