@@ -7,7 +7,6 @@ import { Container } from "../../public/container.jsx";
 import { Logo } from "../../public/logo.jsx";
 
 export default function Postpage({ postList, categories }) {
-  console.log(postList);
   return (
     <>
       <Head>
@@ -57,6 +56,7 @@ export async function getStaticProps({ params }) {
       postList: posts,
       categories,
     },
+    revalidate: 1,
   };
 }
 

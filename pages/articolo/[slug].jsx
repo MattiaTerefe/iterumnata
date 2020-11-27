@@ -86,5 +86,6 @@ export async function getStaticProps({ params }) {
       categories,
       post: posts.find((el) => el.slug == params.slug),
     },
+    revalidate: 1,
   };
 }

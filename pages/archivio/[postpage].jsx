@@ -58,6 +58,7 @@ export async function getStaticProps({ params }) {
       categories,
       postList: data,
     },
+    revalidate: 1,
   };
 }
 
