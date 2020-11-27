@@ -1,3 +1,8 @@
+import Link from "next/link";
 export const Logo = (props) => (
-  <img src="../assets/logo.svg" className="logo" />
+  <Link href="/">
+    <a>
+      <img src="../assets/logo.svg" className="logo" />
+    </a>
+  </Link>
 );
