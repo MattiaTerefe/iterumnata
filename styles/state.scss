@@ -6,4 +6,19 @@
   .l-header {
     text-align: center;
   }
+  .l-main {
+    width: 100%;
+  }
+  .l-side {
+    align-self: flex-start;
+  }
+}
+
+a:hover {
+  color: $select-color-1;
+}
+
+.post-link:hover {
+  color: $select-color-1;
+  cursor: pointer;
 }

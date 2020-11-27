@@ -6,7 +6,7 @@ import { Side } from "../public/side.jsx";
 import { Container } from "../public/container.jsx";
 import { Logo } from "../public/logo.jsx";
 
-export default function Home({ posts }) {
+export default function Home({ posts, categories }) {
   return (
     <>
       <Head>
@@ -19,7 +19,7 @@ export default function Home({ posts }) {
       </Header>
       <Container>
         <Main posts={posts} />
-        <Side />
+        <Side categories={categories} />
       </Container>
       <Footer />
     </>
@@ -27,13 +27,31 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  let posts = await fetch(
-    "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts"
-  );
-  posts = await posts.json();
+  const getData = async (type) => {
+    let fetched = 0;
+    let tot = 0;
+    let allElements = [];
+    do {
+      const response = await fetch(
+        "https://iterumnata.000webhostapp.com/wp-json/wp/v2/" +
+          type +
+          "/?per_page=100&offset=" +
+          fetched.toString()
+      );
+      tot = response.headers.get("x-wp-total");
+      let data = await response.json();
+      allElements = allElements.concat(data);
+      fetched += 100;
+    } while (fetched < tot);
+    return allElements;
+  };
+
+  let posts = await getData("posts");
+  let categories = await getData("categories");
   return {
     props: {
-      posts: posts,
+      categories,
+      posts,
     },
   };
 }

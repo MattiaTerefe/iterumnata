@@ -6,7 +6,7 @@ import { Side } from "../../public/side.jsx";
 import { Container } from "../../public/container.jsx";
 import { Logo } from "../../public/logo.jsx";
 
-export default function Postpage({ postList }) {
+export default function Postpage({ postList, categories }) {
   console.log(postList);
   return (
     <>
@@ -20,7 +20,7 @@ export default function Postpage({ postList }) {
       </Header>
       <Container>
         <Main posts={postList} />
-        <Side />
+        <Side categories={categories} />
       </Container>
       <Footer />
     </>
@@ -50,11 +50,12 @@ export async function getStaticProps({ params }) {
   let posts = await getData("posts");
   let categories = await getData("categories");
   let category = categories.find((el) => el.slug == params.category);
-  posts = posts.filter((el) => el.categories[0] == category.id);
+  posts = posts.filter((el) => el.categories.includes(category.id));
 
   return {
     props: {
       postList: posts,
+      categories,
     },
   };
 }

@@ -5,8 +5,8 @@ import Link from "next/link";
 export const PostPreview = (props) => {
   return (
     <div className="post-preview">
-      <Link href={"/articoli/" + props.slug}>
-        <h2>{ReactHtmlParser(props.title)}</h2>
+      <Link href={"/articolo/" + props.slug}>
+        <h2 className="post-link">{ReactHtmlParser(props.title)}</h2>
       </Link>
       <p>{ReactHtmlParser(props.excerpt)}</p>
     </div>

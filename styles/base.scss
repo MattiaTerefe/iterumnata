@@ -14,6 +14,7 @@ body {
 
 ul {
   list-style: none;
+  padding-left: 0;
 }
 
 a,
@@ -24,6 +25,7 @@ h3 {
   text-decoration: none;
 }
 
-a:hover {
-  color: $select-color-1;
+/*li {
+  margin-bottom: 2px;
 }
+*/

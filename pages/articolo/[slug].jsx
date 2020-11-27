@@ -7,7 +7,7 @@ import { Container } from "../../public/container.jsx";
 import { Logo } from "../../public/logo.jsx";
 import { SinglePost } from "../../public/post.jsx";
 
-export default function Post({ post }) {
+export default function Post({ post, categories }) {
   return (
     <>
       <Head>
@@ -20,7 +20,7 @@ export default function Post({ post }) {
       </Header>
       <Container>
         <SinglePost post={post} />
-        <Side />
+        <Side categories={categories} />
       </Container>
       <Footer />
     </>
@@ -76,13 +76,14 @@ export async function getStaticProps({ params }) {
   };
 
   let posts = await getData("posts");
-  //let categories = await getData("categories");
+  let categories = await getData("categories");
   // let pages = await getData("pages");
   //let users = await getData("users")
   //let tags = await getData("tags")
 
   return {
     props: {
+      categories,
       post: posts.find((el) => el.slug == params.slug),
     },
   };

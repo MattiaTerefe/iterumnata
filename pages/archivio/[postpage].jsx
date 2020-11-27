@@ -6,7 +6,7 @@ import { Side } from "../../public/side.jsx";
 import { Container } from "../../public/container.jsx";
 import { Logo } from "../../public/logo.jsx";
 
-export default function Postpage({ postList }) {
+export default function Postpage({ postList, categories }) {
   return (
     <>
       <Head>
@@ -19,7 +19,7 @@ export default function Postpage({ postList }) {
       </Header>
       <Container>
         <Main posts={postList} />
-        <Side />
+        <Side categories={categories} />
       </Container>
       <Footer />
     </>
@@ -33,8 +33,29 @@ export async function getStaticProps({ params }) {
       offset.toString()
   );
   const data = await res.json();
+  const getData = async (type) => {
+    let fetched = 0;
+    let tot = 0;
+    let allElements = [];
+    do {
+      const response = await fetch(
+        "https://iterumnata.000webhostapp.com/wp-json/wp/v2/" +
+          type +
+          "/?per_page=100&offset=" +
+          fetched.toString()
+      );
+      tot = response.headers.get("x-wp-total");
+      let data = await response.json();
+      allElements = allElements.concat(data);
+      fetched += 100;
+    } while (fetched < tot);
+    return allElements;
+  };
+  let categories = await getData("categories");
+
   return {
     props: {
+      categories,
       postList: data,
     },
   };
@@ -63,11 +84,3 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
-/*const res = await fetch(
-    "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts/"
-  );
-  const data = await res.json();
-  const tot = res.headers.get("x-wp-total");
-  const paths = Math.ceil(tot / 10);
-  */
