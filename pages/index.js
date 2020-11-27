@@ -5,7 +5,7 @@ import { Main } from "../public/main.jsx";
 import { Side } from "../public/side.jsx";
 import { Container } from "../public/container.jsx";
 import { Logo } from "../public/logo.jsx";
-
+import Link from "next/link";
 export default function Home({ posts, categories }) {
   return (
     <>
@@ -17,10 +17,21 @@ export default function Home({ posts, categories }) {
       <Header>
         <Logo />
       </Header>
+      <br />
+      <Link href={"/archivio/1"}>
+        <a>
+          <button>Post più vecchi</button>
+        </a>
+      </Link>
       <Container>
         <Main posts={posts} />
         <Side categories={categories} />
       </Container>
+      <Link href={"/archivio/1"}>
+        <a>
+          <button>Post più vecchi</button>
+        </a>
+      </Link>
       <Footer />
     </>
   );

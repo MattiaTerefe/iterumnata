@@ -8,15 +8,30 @@ import { Logo } from "../../public/logo.jsx";
 import Link from "next/link";
 export default function Postpage({ postList, categories, offset }) {
   offset = Number(offset);
+  var nextPage = offset + 1;
+  var prevPage = offset - 1;
+  var nextButton, prevButton;
   if (offset < postList.length) {
-    var nextPage = offset + 1;
+    nextButton = (
+      <Link href={"/archivio/" + nextPage.toString()}>
+        <a>
+          <button>Post più vecchi</button>
+        </a>
+      </Link>
+    );
   } else {
-    var nextPage = offset;
+    nextButton = "";
   }
   if (offset > 0) {
-    var prevPage = offset - 1;
+    prevButton = (
+      <Link href={"/archivio/" + prevPage.toString()}>
+        <a>
+          <button>Post più Recenti</button>
+        </a>
+      </Link>
+    );
   } else {
-    var prevPage = offset;
+    prevButton = "";
   }
 
   return (
@@ -29,20 +44,19 @@ export default function Postpage({ postList, categories, offset }) {
       <Header>
         <Logo />
       </Header>
+      <div className="nav-btn">
+        {nextButton}
+        {prevButton}
+      </div>
       <Container>
         <Main posts={postList} />
         <Side categories={categories} />
       </Container>
-      <Link href={"/archivio/" + nextPage.toString()}>
-        <a>
-          <button>Post più vecchi</button>
-        </a>
-      </Link>
-      <Link href={"/archivio/" + prevPage.toString()}>
-        <a>
-          <button>Post più Recenti</button>
-        </a>
-      </Link>
+      <div className="nav-btn">
+        {nextButton}
+        {prevButton}
+      </div>
+
       <Footer />
     </>
   );

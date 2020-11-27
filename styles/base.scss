@@ -25,7 +25,13 @@ h3 {
   text-decoration: none;
 }
 
-/*li {
-  margin-bottom: 2px;
+button {
+  border: 0px;
+  border-bottom: 5px $select-color-1 solid;
+  background-color: $text-color-2;
+  padding: 1em;
+  margin: 0 1em 0 0;
+  border-radius: 3px;
+  font-size: 1em;
+  cursor: pointer;
 }
-*/
