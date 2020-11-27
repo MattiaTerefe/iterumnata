@@ -5,14 +5,26 @@ import { Main } from "../../public/main.jsx";
 import { Side } from "../../public/side.jsx";
 import { Container } from "../../public/container.jsx";
 import { Logo } from "../../public/logo.jsx";
+import Link from "next/link";
+export default function Postpage({ postList, categories, offset }) {
+  offset = Number(offset);
+  if (offset < postList.length) {
+    var nextPage = offset + 1;
+  } else {
+    var nextPage = offset;
+  }
+  if (offset > 0) {
+    var prevPage = offset - 1;
+  } else {
+    var prevPage = offset;
+  }
 
-export default function Postpage({ postList, categories }) {
   return (
     <>
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Iterum Nata</title>
       </Head>
       <Header>
         <Logo />
@@ -21,6 +33,16 @@ export default function Postpage({ postList, categories }) {
         <Main posts={postList} />
         <Side categories={categories} />
       </Container>
+      <Link href={"/archivio/" + nextPage.toString()}>
+        <a>
+          <button>Post più vecchi</button>
+        </a>
+      </Link>
+      <Link href={"/archivio/" + prevPage.toString()}>
+        <a>
+          <button>Post più Recenti</button>
+        </a>
+      </Link>
       <Footer />
     </>
   );
@@ -57,6 +79,7 @@ export async function getStaticProps({ params }) {
     props: {
       categories,
       postList: data,
+      offset: params.postpage,
     },
     revalidate: 1,
   };
