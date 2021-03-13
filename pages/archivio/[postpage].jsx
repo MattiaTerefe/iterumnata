@@ -6,6 +6,7 @@ import { Side } from "../../public/side.jsx";
 import { Container } from "../../public/container.jsx";
 import { Logo } from "../../public/logo.jsx";
 import Link from "next/link";
+
 export default function Postpage({ postList, categories, offset }) {
   offset = Number(offset);
   var nextPage = offset + 1;
@@ -15,7 +16,7 @@ export default function Postpage({ postList, categories, offset }) {
     nextButton = (
       <Link href={"/archivio/" + nextPage.toString()}>
         <a>
-          <button>Post più vecchi</button>
+          <button className="nav-btn">Post più vecchi</button>
         </a>
       </Link>
     );
@@ -26,7 +27,7 @@ export default function Postpage({ postList, categories, offset }) {
     prevButton = (
       <Link href={"/archivio/" + prevPage.toString()}>
         <a>
-          <button>Post più Recenti</button>
+          <button className="nav-btn">Post più Recenti</button>
         </a>
       </Link>
     );
@@ -44,19 +45,11 @@ export default function Postpage({ postList, categories, offset }) {
       <Header>
         <Logo />
       </Header>
-      <div className="nav-btn">
-        {nextButton}
-        {prevButton}
-      </div>
+      {prevButton} {nextButton}
       <Container>
         <Main posts={postList} />
         <Side categories={categories} />
       </Container>
-      <div className="nav-btn">
-        {nextButton}
-        {prevButton}
-      </div>
-
       <Footer />
     </>
   );

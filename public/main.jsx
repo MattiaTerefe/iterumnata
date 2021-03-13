@@ -9,5 +9,10 @@ export const Main = (props) => {
     />
   ));
 
-  return <main className="l-main">{posts}</main>;
+  return (
+    <main className="l-main">
+      <h1 className="recents-head">Post recenti</h1>
+      {posts}
+    </main>
+  );
 };

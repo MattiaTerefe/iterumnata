@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const Categories = (props) => {
   return (
-    <div>
+    <div className="cats">
       <h3>Archivio per categorie:</h3>
       <ul>
         {props.categories.map((el) => (

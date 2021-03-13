@@ -1,14 +1,12 @@
 .l-header {
-  height: 290px;
-
   background-color: $bg-color-2;
   position: sticky;
   box-shadow: $def-shadow;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 .l-container {
   display: flex;
-  padding: 2em 1em;
+  padding: 0.5em 1em;
 }
 
 .l-main {
@@ -21,6 +19,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .l-side {
   width: 15%;
   padding: 1em 1.5em;

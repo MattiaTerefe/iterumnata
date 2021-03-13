@@ -17,21 +17,15 @@ export default function Home({ posts, categories }) {
       <Header>
         <Logo />
       </Header>
-      <br />
       <Link href={"/archivio/1"}>
         <a>
-          <button>Post più vecchi</button>
+          <button className="nav-btn">Post più vecchi</button>
         </a>
       </Link>
       <Container>
         <Main posts={posts} />
         <Side categories={categories} />
       </Container>
-      <Link href={"/archivio/1"}>
-        <a>
-          <button>Post più vecchi</button>
-        </a>
-      </Link>
       <Footer />
     </>
   );
@@ -57,8 +51,11 @@ export async function getStaticProps() {
     return allElements;
   };
 
-  let posts = await getData("posts");
-  let categories = await getData("categories");
+  const getPosts = await fetch(
+    "https://iterumnata.000webhostapp.com/wp-json/wp/v2/posts"
+  );
+  const posts = await getPosts.json();
+  const categories = await getData("categories");
   return {
     props: {
       categories,

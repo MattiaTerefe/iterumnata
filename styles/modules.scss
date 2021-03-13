@@ -1,17 +1,22 @@
 .logo {
-  height: 320px;
+  height: 220px;
+  overflow: visible;
 }
 .post-preview {
   padding: 2em 1em;
 }
 
 .post {
-  padding: 2em 1em;
+  padding: $std-padding;
 }
 .post-link {
   display: inline;
 }
 
+.recents-head {
+  align-self: center;
+}
+
 .nav-btn {
-  text-align: center;
+  margin: 1em;
 }

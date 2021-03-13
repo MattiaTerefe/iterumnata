@@ -1,19 +1,41 @@
 @media (max-width: 768px) {
   .l-container {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
   }
+
   .l-header {
     text-align: center;
   }
+
   .l-main {
     width: 100%;
   }
+
   .l-side {
     width: 100%;
     align-self: flex-start;
     padding-left: 1em;
     box-sizing: border-box;
+
+    .cats {
+      display: flex;
+      flex-direction: row;
+      vertical-align: center;
+      flex-wrap: wrap;
+    }
+
+    li {
+      display: inline;
+      padding: 0 0.3em;
+      border-left: 1px solid $text-color-2;
+    }
+
+    ul {
+      margin-left: 0.3em;
+      display: flex;
+      align-items: center;
+    }
   }
 }
 
